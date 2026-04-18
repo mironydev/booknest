@@ -24,6 +24,14 @@ const PagesToRead = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  if (storedBooks.length === 0) {
+    return (
+      <div className="container mx-auto bg-base-300 p-6 gap-6 rounded-2xl text-2xl font-medium mt-10 flex justify-center items-center h-50">
+        <p className="opacity-60">Nothing to show here</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto bg-base-300 rounded-xl sm:p-3 md:p-5 mt-10 text-xs">
       <BarChart
