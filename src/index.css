@@ -5,3 +5,21 @@
 * {
   font-family: "Inter", sans-serif;
 }
+
+.recharts-surface {
+  outline: none !important;
+}
+
+.recharts-surface:focus {
+  outline: none !important;
+}
+
+.recharts-surface *:focus {
+  outline: none !important;
+}
+
+/* Also prevent focus on text, bars, and other SVG elements */
+svg:focus,
+svg *:focus {
+  outline: none !important;
+}
