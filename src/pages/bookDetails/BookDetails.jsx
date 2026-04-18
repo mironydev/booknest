@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData, useParams } from "react-router";
+import { BookContext } from "../../context/BookProvider";
 
 const BookDetails = () => {
   const { id } = useParams();
   const books = useLoaderData();
   const clickedBook = books.find((book) => book.bookId === Number(id));
+
+  const { handleReadButton, handleWishlistButton } = useContext(BookContext);
+
   return (
-    <div className="container mx-auto mt-10 md:mt-20 flex flex-col md:flex-row items-center gap-14 lg:gap-24">
+    <div className="container mx-auto mb-10 md:mt-20 flex flex-col md:flex-row items-center gap-14 lg:gap-24">
       <figure className="flex-1 p-10 lg:p-20 flex sm:rounded-xl bg-base-300 max-w-100 mx-auto md:mx-0">
         <img src={clickedBook.image} alt="" className="rounded-xl" />
       </figure>
@@ -52,8 +56,18 @@ const BookDetails = () => {
           </div>
         </div>
         <div className="space-x-4">
-          <button className="btn bg-white p-5 hover:bg-base-300">Read</button>
-          <button className="btn bg-[#50B1C9] text-white p-5">Wishlist</button>
+          <button
+            onClick={() => handleReadButton(clickedBook)}
+            className="btn bg-white p-5 hover:bg-base-300"
+          >
+            Mark as Read
+          </button>
+          <button
+            onClick={() => handleWishlistButton(clickedBook)}
+            className="btn bg-[#50B1C9] text-white p-5"
+          >
+            Add to Wishlist
+          </button>
         </div>
       </div>
     </div>
